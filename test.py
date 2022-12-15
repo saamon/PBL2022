@@ -29,4 +29,3 @@ if st.button('Generate'):
     st.write(response['choices'][0]['text'])
 
     # streamlit run test.py（ファイル名）で実行
-    # TestCommit
