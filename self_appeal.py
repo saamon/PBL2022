@@ -6,8 +6,10 @@ import streamlit as st
 st.title("自己PRジェネレーター")
 
 with st.form("my_form"):
-    # 応募する職種を入力するテキストボックスを作成
-    job_type = st.text_input("応募する職種を入力してください")
+    # 応募する職種を選択するテキストボックスを作成
+    # セレクトボックスで選べるようにする
+    job_type = ["エンジニア", "営業", "事務"]
+    selected_mood = st.selectbox("応募する職業を選択してください", job_type)
 
     # 経験を簡単に入力するテキストボックスを作成
     experience = st.text_area("経験を簡単に入力してください")
@@ -63,7 +65,7 @@ with st.form("my_form"):
                 frequency_penalty=0,
                 presence_penalty=0,
             )
-            # 文章を出力
+            # 文章を出力して出力した文章をコピーできるようにする
             st.write(response["choices"][0]["text"])
 # このコードを実行するには、以下のコマンドを実行してください。
 

@@ -7,7 +7,8 @@ st.title("志望動機ジェネレーター")
 
 with st.form("my_form"):
     # 応募する職種を入力するテキストボックスを作成
-    job_type = st.text_input("応募する職種を入力してください")
+    job_type = ["エンジニア", "営業", "事務"]
+    selected_mood = st.selectbox("応募する職業を選択してください", job_type)
 
     # 学生時代に力を入れたことを簡単に入力するテキストボックスを作成
     experience = st.text_area("会社を選ぶ理由を簡単に入力してください")
@@ -26,7 +27,7 @@ with st.form("my_form"):
         # .envファイルからAPIキーを取得
         openai.api_key = os.getenv("OPENAI_API_KEY")
         # GPT-3に渡すパラメータを設定
-        prompt = f"応募する職種: {job_type}\n志望動機: {experience}\n雰囲気: {selected_mood}+志望動機:"
+        prompt = f"応募する職種: {selected_mood}\n志望動機: {experience}\n雰囲気: {selected_mood}+志望動機:"
         if selected_mood == "大胆":
             response = openai.Completion.create(
                 engine="text-davinci-003",
