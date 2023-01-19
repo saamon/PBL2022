@@ -30,7 +30,7 @@ inserts=[
  ]
 cur.executemany('INSERT INTO items values(?,?)', inserts)
 
-st.title= "テンプレート一覧"
+st.header("メールテンプレート")
 option=st.selectbox(
     "select box:",
     ["初期","面接日程調整","面接日程","日程変更","書類提出","面接辞退","面接結果の問い合わせ","内定承諾","内定保留","説明会参加申し込み","説明会参加のお礼","説明会キャンセル","内定通知連絡のお礼"]
@@ -73,4 +73,9 @@ for row in cur:
 
 if st.button(label="コピー"):#コピーボタンを作成
     pyperclip.copy(result)#変数の中身をクリップボードにコピー
+
+st.header("文字数カウント")
+text=st.text_input(label="テキストを入力してください")
+if st.button(label="カウント"):
+    st.write("文字数",len(text))
 conn.close()
